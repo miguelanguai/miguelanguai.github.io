@@ -320,21 +320,97 @@ footer {
                 margin-top:0;
                 padding: 0;
                 display: flex;
-                
+
                 li {
                     list-style: none;
                     padding-right: 0.5rem;
-                    
+
                     a {
                         text-decoration: none;
                         color: #000000;
                     }
                 }
-                
+
                 a:hover {
                     color: #5a0000;
                 }
             }
     }
 
+}
+
+/* ─── Tablet (≤1024px) ─── */
+@media (max-width: 1024px) {
+    main {
+        margin: 4rem 4rem 0 4rem;
+    }
+
+    footer {
+        margin: 4rem 4rem;
+    }
+
+    main .titulos h1 {
+        font-size: 2.5rem;
+    }
+
+    main .job-stack {
+        margin-left: 2rem;
+    }
+}
+
+/* ─── Mobile (≤768px) ─── */
+@media (max-width: 768px) {
+    header {
+        margin: 0.5rem 0;
+    }
+
+    main {
+        margin: 5rem 1.25rem 0 1.25rem;
+    }
+
+    footer {
+        margin: 2rem 1.25rem;
+    }
+
+    main .sobretitulo {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+
+    main .titulos h1 {
+        font-size: 1.75rem;
+    }
+
+    main .titulos h2 {
+        font-size: 1.2rem;
+    }
+
+    main .job {
+        flex-direction: column;
+    }
+
+    main .job-card {
+        width: 100%;
+        height: auto;
+        min-height: 10rem;
+    }
+
+    main .job-card img {
+        max-width: 80%;
+        height: auto;
+    }
+
+    main .job-stack {
+        margin-left: 0;
+        margin-top: 1rem;
+    }
+
+    main .about-body {
+        flex-direction: column;
+    }
+
+    main .about-image img {
+        max-width: 100%;
+        width: auto;
+    }
 }
