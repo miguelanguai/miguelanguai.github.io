@@ -20,6 +20,12 @@ html {
     top: 0;
 }
 
+:focus-visible {
+    outline: 2px solid #A60505;
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
 html,
 body {
     font-family: "Fira Sans", Arial, sans-serif;
@@ -58,6 +64,11 @@ header {
 
     a:hover {
         color: #A60505;
+    }
+
+    a:focus-visible {
+        color: #A60505;
+        outline-offset: 5px;
     }
 
     .contact {
@@ -125,7 +136,8 @@ main {
             z-index: -1;
         }
 
-        .link-linkedin-1:hover {
+        .link-linkedin-1:hover,
+        .link-linkedin-1:focus-visible {
             color: #FFFFFF;
             border: 1px solid #FFFFFF;
             background-color: #FFFFFF;
@@ -165,7 +177,8 @@ main {
             color: black;
         }
 
-        a:hover {
+        a:hover,
+        a:focus-visible {
             background-color: #5a0000;
             color: white;
             border-color: transparent;
@@ -349,8 +362,10 @@ footer {
                     }
                 }
 
-                a:hover {
+                a:hover,
+                a:focus-visible {
                     color: #5a0000;
+                    outline-offset: 3px;
                 }
             }
     }
