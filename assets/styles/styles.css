@@ -1,5 +1,23 @@
 html {
     font-size: 16px;
+    scroll-padding-top: 4rem;
+}
+
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    background-color: #A60505;
+    color: white;
+    padding: 0.5rem 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 0 0 0.5rem 0;
+    z-index: 100;
+}
+
+.skip-link:focus {
+    top: 0;
 }
 
 html,
@@ -360,6 +378,10 @@ footer {
 
 /* ─── Mobile (≤768px) ─── */
 @media (max-width: 768px) {
+    html {
+        scroll-padding-top: 5rem;
+    }
+
     header {
         margin: 0.5rem 0;
     }
