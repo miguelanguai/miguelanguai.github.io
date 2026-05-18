@@ -96,7 +96,9 @@ main {
             margin-top: 1rem;
             text-decoration: none;
             padding: 0.5rem;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
             border: 1px solid #b1b1b1;
             border-radius: 1rem;
             transition: all 0.2s ease-in;
