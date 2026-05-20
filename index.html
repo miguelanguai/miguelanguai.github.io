@@ -13,6 +13,13 @@
   <link rel="stylesheet" href="assets/fonts/stylesheet.css">
   <!--link to styles.css-->
   <link rel="stylesheet" href="assets/styles/styles.css">
+  <script>
+    (function () {
+      var t = localStorage.getItem('theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
   <!--basic favicon-->
   <link rel="icon" href="assets/img/logoMA.ico" type="image/x-icon">
 </head>
@@ -25,6 +32,7 @@
       <a href="#about">Sobre mí</a>
       <a href="mailto:miguelanguai@gmail.com?subject=Contact%20From%20Web%20Portfolio&body=Hi%20I%20think%20your%20website%20is%20interesting"
         class="contact">Contacto</a>
+      <button id="theme-toggle" aria-label="Cambiar a modo oscuro"></button>
     </nav>
   </header>
 
@@ -300,5 +308,6 @@
 </body>
 <script src="assets/scripts/header.js"></script>
 <script src="assets/scripts/copyMail.js"></script>
+<script src="assets/scripts/theme.js"></script>
 
 </html>
