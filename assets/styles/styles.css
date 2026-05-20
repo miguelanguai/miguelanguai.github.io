@@ -76,6 +76,20 @@ header {
         color: #5a0000;
     }
 
+    #theme-toggle {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.25rem 0.4rem;
+        font-size: 1rem;
+        color: grey;
+        line-height: 1;
+    }
+
+    #theme-toggle:hover {
+        color: #A60505;
+    }
+
     transition: background-color 0.3s;
 }
 
@@ -514,5 +528,95 @@ footer {
     main .about-image img {
         max-width: 100%;
         width: auto;
+    }
+}
+
+/* ─── Dark mode ─── */
+[data-theme="dark"] {
+    html, body {
+        background-color: #111;
+        color: #e0e0e0;
+    }
+
+    header nav {
+        box-shadow: 0.01rem 0rem 0.4rem 0.05rem rgb(20, 20, 20);
+    }
+
+    header a {
+        color: #a0a0a0;
+    }
+
+    header a:hover,
+    header a:focus-visible {
+        color: #e05252;
+    }
+
+    header .contact {
+        color: #e05252;
+    }
+
+    .scroll-header {
+        background-color: rgba(17, 17, 17, 0.9);
+    }
+
+    main .titulos h2 {
+        color: #cc6666;
+    }
+
+    main .link-linkedin-1 {
+        color: #e05252;
+        border-color: #444;
+    }
+
+    main .introduccion-links a,
+    main .introduccion-links .copy-mail-btn {
+        color: #e0e0e0;
+        border-color: #444;
+    }
+
+    main .introduccion-links a:hover,
+    main .introduccion-links a:focus-visible,
+    main .introduccion-links .copy-mail-btn:hover,
+    main .introduccion-links .copy-mail-btn:focus-visible {
+        background-color: #8b0000;
+        border-color: transparent;
+    }
+
+    main .job-card {
+        background-color: #1e1e1e;
+        box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.05);
+    }
+
+    main .job-card_content {
+        background-color: #1e1e1e;
+    }
+
+    main .job-card_title {
+        color: #e0e0e0;
+    }
+
+    main .job-card_hint {
+        color: #a0a0a0;
+    }
+
+    main .job-card_description {
+        color: #a0a0a0;
+    }
+
+    footer a {
+        color: #e0e0e0;
+    }
+
+    footer a:hover,
+    footer a:focus-visible {
+        color: #e05252;
+    }
+
+    header #theme-toggle {
+        color: #a0a0a0;
+    }
+
+    header #theme-toggle:hover {
+        color: #e05252;
     }
 }
