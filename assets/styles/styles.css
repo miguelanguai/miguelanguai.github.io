@@ -305,6 +305,21 @@ main {
         font-size: 1.5rem;
         color: #333;
         font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+
+    .job-card_badge {
+        font-size: 0.65rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        background-color: #e8e8e8;
+        color: #555;
+        border-radius: 4px;
+        padding: 2px 6px;
     }
 
     .job-card_subtitle {
@@ -386,6 +401,10 @@ main {
 
         .git {
             background-color: #a54200;
+        }
+
+        .python {
+            background-color: #1a3a6b;
         }
     }
 
@@ -597,6 +616,11 @@ footer {
 
     main .job-card_title {
         color: #e0e0e0;
+    }
+
+    main .job-card_badge {
+        background-color: #333;
+        color: #aaa;
     }
 
     main .job-card_hint {
