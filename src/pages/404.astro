@@ -1,0 +1,13 @@
+---
+import Base from '../layouts/Base.astro';
+import { routes, useTranslations } from '../i18n/ui';
+
+const t = useTranslations('es');
+const en = useTranslations('en');
+---
+
+<Base lang="es" title={t('404.title')} alternate={routes.home.en}>
+  <h1 style="margin-top: 1.5rem">{t('404.title')}</h1>
+  <p>{t('404.text')} <a href={routes.home.es}>{t('404.home')}</a></p>
+  <p class="muted" lang="en">{en('404.text')} <a href={routes.home.en}>{en('404.home')}</a></p>
+</Base>

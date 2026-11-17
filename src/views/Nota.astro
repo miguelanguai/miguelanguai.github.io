@@ -1,0 +1,59 @@
+---
+import { type CollectionEntry, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { type Lang, formatDate, otherLang, routes, splitId, useTranslations } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  nota: CollectionEntry<'notas'>;
+}
+
+const { lang, nota } = Astro.props;
+const t = useTranslations(lang);
+const { Content } = await render(nota);
+const slug = splitId(nota.id).slug;
+---
+
+<Base
+  lang={lang}
+  title={nota.data.title}
+  description={nota.data.descripcion}
+  alternate={`${routes.notas[otherLang(lang)]}${slug}/`}
+  type="article"
+>
+  <article>
+    <a class="back" href={routes.notas[lang]}>{t('notas.volver')}</a>
+    <header>
+      <time class="mono muted" datetime={nota.data.fecha.toISOString()}>{formatDate(nota.data.fecha, lang)}</time>
+      <h1>{nota.data.title}</h1>
+      <p class="muted lead">{nota.data.descripcion}</p>
+    </header>
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</Base>
+
+<style>
+  .back {
+    display: inline-block;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+
+  header {
+    margin: 1.75rem 0 2rem;
+  }
+
+  time {
+    font-size: 0.8rem;
+  }
+
+  h1 {
+    margin-top: 0.3rem;
+  }
+
+  .lead {
+    font-size: 1.1rem;
+  }
+</style>

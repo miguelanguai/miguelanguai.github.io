@@ -1,0 +1,269 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { type Lang, formatDate, formatMonth, otherLang, routes, splitId, useTranslations } from '../i18n/ui';
+import { contacto } from '../data/perfil';
+import { experiencia } from '../data/experiencia';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const destacados = (await getCollection('proyectos', (p) => p.id.startsWith(`${lang}/`) && p.data.destacado)).sort(
+  (a, b) => a.data.orden - b.data.orden,
+);
+
+const notas = (await getCollection('notas', (n) => n.id.startsWith(`${lang}/`)))
+  .sort((a, b) => b.data.fecha.getTime() - a.data.fecha.getTime())
+  .slice(0, 3);
+---
+
+<Base lang={lang} alternate={routes.home[otherLang(lang)]}>
+  <section class="intro" aria-labelledby="nombre">
+    <img
+      class="avatar"
+      src="/img/perfil.jpg"
+      alt=""
+      width="96"
+      height="96"
+      fetchpriority="high"
+    />
+    <h1 id="nombre">Miguel Ángel Guaita</h1>
+    <p class="titular mono">{t('home.titular')}</p>
+    <p class="lead">{t('home.lead')}</p>
+    <p class="ubicacion muted mono">{t('home.ubicacion')}</p>
+
+    <ul class="contact">
+      <li><a href={`mailto:${contacto.email}`}>{contacto.email}</a></li>
+      <li>
+        <button
+          class="copy"
+          type="button"
+          data-email={contacto.email}
+          data-label={t('contact.copy')}
+          data-copied={t('contact.copied')}
+        >
+          {t('contact.copy')}
+        </button>
+      </li>
+      <li><a href={contacto.linkedin} rel="me noopener" target="_blank">LinkedIn</a></li>
+      <li><a href={contacto.github} rel="me noopener" target="_blank">GitHub</a></li>
+      {contacto.cv[lang] && <li><a href={contacto.cv[lang]}>{t('contact.cv')}</a></li>}
+    </ul>
+  </section>
+
+  <section class="section" aria-labelledby="ahora">
+    <h2 id="ahora" class="section-title">{t('home.ahora')}</h2>
+    <p>{t('home.ahoraTexto')}</p>
+  </section>
+
+  <section class="section" aria-labelledby="destacados">
+    <h2 id="destacados" class="section-title">{t('home.destacados')}</h2>
+    <div class="projects">
+      {
+        destacados.map((p) => (
+          <a class="project" href={`${routes.proyectos[lang]}${splitId(p.id).slug}/`}>
+            {p.data.imagen && <img src={p.data.imagen} alt="" loading="lazy" width="640" height="300" />}
+            <div class="project-body">
+              <h3>{p.data.title}</h3>
+              {p.data.logro && <p class="badge">{p.data.logro}</p>}
+              <p class="muted">{p.data.resumen}</p>
+              <ul class="tags">
+                {p.data.stack.slice(0, 5).map((s) => (
+                  <li>{s}</li>
+                ))}
+              </ul>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="experiencia">
+    <h2 id="experiencia" class="section-title">{t('home.experiencia')}</h2>
+    <ul class="exp-list">
+      {
+        experiencia.map((e) => (
+          <li>
+            <span class="exp-main">
+              <strong>{e.empresa}</strong>
+              <span class="muted"> · {e.puesto[lang]}</span>
+            </span>
+            <span class="mono muted exp-dates">
+              {formatMonth(e.inicio, lang)} – {e.fin ? formatMonth(e.fin, lang) : t('exp.actualidad')}
+            </span>
+          </li>
+        ))
+      }
+    </ul>
+    <a class="more-link" href={routes.experiencia[lang]}>{t('home.verExperiencia')} →</a>
+  </section>
+
+  {
+    notas.length > 0 && (
+      <section class="section" aria-labelledby="notas">
+        <h2 id="notas" class="section-title">{t('home.notas')}</h2>
+        <ul class="notes-list">
+          {notas.map((n) => (
+            <li>
+              <a href={`${routes.notas[lang]}${splitId(n.id).slug}/`}>{n.data.title}</a>
+              <time class="mono muted" datetime={n.data.fecha.toISOString()}>
+                {formatDate(n.data.fecha, lang)}
+              </time>
+            </li>
+          ))}
+        </ul>
+        <a class="more-link" href={routes.notas[lang]}>{t('home.verNotas')} →</a>
+      </section>
+    )
+  }
+</Base>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('button.copy').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(btn.dataset.email ?? '');
+        btn.textContent = btn.dataset.copied ?? '';
+        setTimeout(() => (btn.textContent = btn.dataset.label ?? ''), 2000);
+      } catch {
+        window.location.href = `mailto:${btn.dataset.email}`;
+      }
+    });
+  });
+</script>
+
+<style>
+  .intro {
+    padding-top: 1.5rem;
+  }
+
+  .avatar {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: 50% 40%;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border);
+  }
+
+  .titular {
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+  }
+
+  .lead {
+    font-size: 1.2rem;
+    line-height: 1.55;
+  }
+
+  .ubicacion {
+    margin-bottom: 1.25rem;
+  }
+
+  .contact {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1.25rem;
+    list-style: none;
+    padding: 0;
+  }
+
+  .contact li {
+    margin: 0;
+  }
+
+  .copy {
+    font: inherit;
+    font-size: 0.9rem;
+    color: var(--muted);
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.1rem 0.7rem;
+    cursor: pointer;
+  }
+
+  .copy:hover {
+    color: var(--text);
+  }
+
+  .projects {
+    display: grid;
+    gap: 1rem;
+  }
+
+  @media (min-width: 40rem) {
+    .projects {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .project {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    color: inherit;
+    text-decoration: none;
+    background: var(--surface);
+    transition: border-color 0.15s;
+  }
+
+  .project:hover {
+    border-color: var(--accent);
+  }
+
+  .project:hover h3 {
+    color: var(--accent);
+  }
+
+  .project img {
+    width: 100%;
+    aspect-ratio: 16 / 7.5;
+    object-fit: cover;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .project-body {
+    padding: 1rem 1.1rem 1.2rem;
+  }
+
+  .project-body .badge {
+    margin-bottom: 0.6rem;
+  }
+
+  .project-body p.muted {
+    font-size: 0.95rem;
+  }
+
+  .exp-list,
+  .notes-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .exp-list li,
+  .notes-list li {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.1rem 1rem;
+    padding-block: 0.6rem;
+    border-bottom: 1px solid var(--border);
+    margin: 0;
+  }
+
+  .exp-dates,
+  .notes-list time {
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+</style>

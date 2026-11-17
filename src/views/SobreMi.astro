@@ -1,0 +1,169 @@
+---
+import Base from '../layouts/Base.astro';
+import { type Lang, otherLang, routes, useTranslations } from '../i18n/ui';
+import { bio, cursos, formacion, fueraDelCodigo, idiomas, stack } from '../data/perfil';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<Base lang={lang} title={t('about.title')} alternate={routes.sobreMi[otherLang(lang)]}>
+  <div class="about-head">
+    <div>
+      <h1>{t('about.title')}</h1>
+      {bio[lang].map((p) => <p>{p}</p>)}
+    </div>
+    <img class="photo" src="/img/perfil.jpg" alt={t('about.fotoAlt')} width="680" height="1003" loading="lazy" />
+  </div>
+
+  <section class="section" aria-labelledby="stack">
+    <h2 id="stack" class="section-title">{t('about.stack')}</h2>
+    <dl class="stack">
+      {
+        stack.map((g) => (
+          <div>
+            <dt>{g.grupo[lang]}</dt>
+            <dd>
+              <ul class="tags">
+                {g.items.map((i) => (
+                  <li>{i}</li>
+                ))}
+              </ul>
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+
+  <section class="section" aria-labelledby="formacion">
+    <h2 id="formacion" class="section-title">{t('about.formacion')}</h2>
+    <ul class="rows">
+      {
+        formacion.map((f) => (
+          <li>
+            <span>
+              <strong>{f.titulo[lang]}</strong>
+              <br />
+              <span class="muted">{f.centro}</span>
+            </span>
+            <span class="mono muted">{f.fechas}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="section" aria-labelledby="cursos">
+    <h2 id="cursos" class="section-title">{t('about.cursos')}</h2>
+    <ul class="rows">
+      {
+        cursos.map((c) => (
+          <li>
+            <span>
+              {c.nombre} <span class="muted">· {c.emisor}</span>
+            </span>
+            <span class="mono muted">{c.fecha}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="section" aria-labelledby="idiomas">
+    <h2 id="idiomas" class="section-title">{t('about.idiomas')}</h2>
+    <ul class="rows">
+      {
+        idiomas.map((i) => (
+          <li>
+            <span>{i.idioma[lang]}</span>
+            <span class="mono muted">{i.nivel[lang]}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="section" aria-labelledby="fuera">
+    <h2 id="fuera" class="section-title">{t('about.fuera')}</h2>
+    <ul>
+      {fueraDelCodigo[lang].map((f) => <li>{f}</li>)}
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .about-head {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .photo {
+    width: 100%;
+    max-width: 14rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+  }
+
+  @media (min-width: 40rem) {
+    .about-head {
+      grid-template-columns: 1fr 12rem;
+      align-items: start;
+    }
+
+    .photo {
+      margin-top: 3.5rem;
+    }
+  }
+
+  .stack {
+    margin: 0;
+  }
+
+  .stack > div {
+    display: grid;
+    gap: 0.4rem;
+    padding-block: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  @media (min-width: 40rem) {
+    .stack > div {
+      grid-template-columns: 9rem 1fr;
+      align-items: baseline;
+    }
+  }
+
+  dt {
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+
+  dd {
+    margin: 0;
+  }
+
+  .rows {
+    list-style: none;
+    padding: 0;
+  }
+
+  .rows li {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.25rem 1rem;
+    padding-block: 0.65rem;
+    border-bottom: 1px solid var(--border);
+    margin: 0;
+  }
+
+  .rows .mono {
+    white-space: nowrap;
+  }
+</style>
