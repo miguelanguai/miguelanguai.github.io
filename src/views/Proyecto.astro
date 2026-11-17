@@ -1,0 +1,146 @@
+---
+import { type CollectionEntry, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { type Lang, otherLang, routes, splitId, useTranslations } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  proyecto: CollectionEntry<'proyectos'>;
+}
+
+const { lang, proyecto } = Astro.props;
+const t = useTranslations(lang);
+const { Content } = await render(proyecto);
+const slug = splitId(proyecto.id).slug;
+const d = proyecto.data;
+
+const enlaces = [
+  d.demo && { href: d.demo, label: t('proyecto.demo') },
+  d.repo && { href: d.repo, label: t('proyecto.repo') },
+  d.publicacion && { href: d.publicacion, label: t('proyecto.publicacion') },
+].filter(Boolean) as { href: string; label: string }[];
+---
+
+<Base
+  lang={lang}
+  title={d.title}
+  description={d.resumen}
+  alternate={`${routes.proyectos[otherLang(lang)]}${slug}/`}
+  image={d.imagen}
+  type="article"
+>
+  <article>
+    <a class="back" href={routes.home[lang]}>{t('proyecto.volver')}</a>
+
+    <header>
+      <h1>{d.title}</h1>
+      {d.logro && <p class="badge">{d.logro}</p>}
+      <p class="lead">{d.resumen}</p>
+
+      <dl class="facts">
+        <div>
+          <dt class="section-title">{t('proyecto.rol')}</dt>
+          <dd>{d.rol}</dd>
+        </div>
+        <div>
+          <dt class="section-title">{t('proyecto.fecha')}</dt>
+          <dd class="mono">{d.fecha}</dd>
+        </div>
+        <div class="wide">
+          <dt class="section-title">{t('proyecto.stack')}</dt>
+          <dd>
+            <ul class="tags">
+              {d.stack.map((s) => <li>{s}</li>)}
+            </ul>
+          </dd>
+        </div>
+      </dl>
+
+      {
+        enlaces.length > 0 && (
+          <ul class="links">
+            {enlaces.map((e) => (
+              <li>
+                <a href={e.href} target="_blank" rel="noopener">
+                  {e.label} ↗
+                </a>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </header>
+
+    {d.imagen && <img class="hero" src={d.imagen} alt={d.imagenAlt ?? ''} width="1600" height="740" />}
+
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</Base>
+
+<style>
+  .back {
+    display: inline-block;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+
+  header {
+    margin: 1.75rem 0 2rem;
+  }
+
+  .badge {
+    margin-bottom: 1rem;
+  }
+
+  .lead {
+    font-size: 1.2rem;
+    line-height: 1.55;
+  }
+
+  .facts {
+    display: grid;
+    gap: 1rem 2rem;
+    margin: 1.75rem 0;
+    padding-block: 1.25rem;
+    border-block: 1px solid var(--border);
+  }
+
+  @media (min-width: 40rem) {
+    .facts {
+      grid-template-columns: 1fr auto;
+    }
+
+    .facts .wide {
+      grid-column: 1 / -1;
+    }
+  }
+
+  .facts .section-title {
+    margin-bottom: 0.35rem;
+  }
+
+  dd {
+    margin: 0;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    list-style: none;
+    padding: 0;
+  }
+
+  .links li {
+    margin: 0;
+  }
+
+  .hero {
+    width: 100%;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    margin-bottom: 2rem;
+  }
+</style>

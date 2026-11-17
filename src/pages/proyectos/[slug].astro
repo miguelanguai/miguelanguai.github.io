@@ -1,0 +1,14 @@
+---
+import { getCollection } from 'astro:content';
+import View from '../../views/Proyecto.astro';
+import { splitId } from '../../i18n/ui';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('proyectos', (e) => e.id.startsWith('es/'));
+  return entries.map((entry) => ({ params: { slug: splitId(entry.id).slug }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+---
+
+<View lang="es" proyecto={entry} />
