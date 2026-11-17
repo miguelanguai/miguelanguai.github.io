@@ -1,0 +1,182 @@
+---
+import { getCollection } from 'astro:content';
+import { type Lang, otherLang, routes, useTranslations } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  alternate: string;
+}
+
+const { lang, alternate } = Astro.props;
+const t = useTranslations(lang);
+const path = Astro.url.pathname;
+
+// El enlace a Notas solo aparece cuando hay al menos una nota en este idioma.
+const hayNotas = (await getCollection('notas', (n) => n.id.startsWith(`${lang}/`))).length > 0;
+
+const links = [
+  { href: routes.experiencia[lang], label: t('nav.experiencia') },
+  { href: routes.sobreMi[lang], label: t('nav.sobreMi') },
+  ...(hayNotas ? [{ href: routes.notas[lang], label: t('nav.notas') }] : []),
+];
+
+const isCurrent = (href: string) => path === href || path.startsWith(href);
+---
+
+<header class="site-header container">
+  <a class="brand" href={routes.home[lang]}>Miguel Ángel Guaita</a>
+  <nav aria-label={lang === 'es' ? 'Principal' : 'Main'}>
+    <ul>
+      {
+        links.map((l) => (
+          <li>
+            <a href={l.href} aria-current={isCurrent(l.href) ? 'page' : undefined}>
+              {l.label}
+            </a>
+          </li>
+        ))
+      }
+      <li>
+        <a
+          class="lang mono"
+          href={alternate}
+          hreflang={otherLang(lang)}
+          lang={otherLang(lang)}
+          aria-label={t('nav.lang')}
+        >
+          {t('nav.langShort')}
+        </a>
+      </li>
+      <li>
+        <button
+          id="theme-toggle"
+          class="theme-toggle"
+          type="button"
+          data-label-dark={t('theme.toDark')}
+          data-label-light={t('theme.toLight')}
+          aria-label={t('theme.toDark')}
+        >
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <path fill="currentColor" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path>
+          </svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.5" fill="currentColor"></circle>
+            <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+            </g>
+          </svg>
+        </button>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const root = document.documentElement;
+  const btn = document.getElementById('theme-toggle') as HTMLButtonElement | null;
+
+  function sync() {
+    if (!btn) return;
+    const dark = root.getAttribute('data-theme') === 'dark';
+    btn.setAttribute('aria-label', (dark ? btn.dataset.labelLight : btn.dataset.labelDark) ?? '');
+  }
+
+  sync();
+  btn?.addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try {
+      localStorage.setItem('theme', next);
+    } catch {}
+    sync();
+  });
+</script>
+
+<style>
+  .site-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 1.5rem;
+    padding-block: 1.5rem;
+  }
+
+  .brand {
+    font-weight: 700;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  ul {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    margin: 0;
+  }
+
+  nav a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+
+  nav a:hover,
+  nav a[aria-current='page'] {
+    color: var(--text);
+  }
+
+  nav a[aria-current='page'] {
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.35em;
+  }
+
+  .lang {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.05rem 0.4rem;
+  }
+
+  .theme-toggle {
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+  }
+
+  .theme-toggle:hover {
+    color: var(--text);
+  }
+
+  .icon-sun {
+    display: none;
+  }
+
+  :global(:root[data-theme='dark']) .icon-sun {
+    display: block;
+  }
+
+  :global(:root[data-theme='dark']) .icon-moon {
+    display: none;
+  }
+
+  @media (max-width: 30rem) {
+    ul {
+      gap: 0.85rem;
+    }
+  }
+</style>

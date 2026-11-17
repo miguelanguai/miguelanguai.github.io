@@ -1,0 +1,48 @@
+---
+import { type Lang, useTranslations } from '../i18n/ui';
+import { contacto } from '../data/perfil';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer container">
+  <ul class="links">
+    <li><a href={`mailto:${contacto.email}`}>{t('contact.email')}</a></li>
+    <li><a href={contacto.linkedin} rel="me noopener" target="_blank">LinkedIn</a></li>
+    <li><a href={contacto.github} rel="me noopener" target="_blank">GitHub</a></li>
+    {contacto.cv[lang] && <li><a href={contacto.cv[lang]}>{t('contact.cv')}</a></li>}
+  </ul>
+  <p class="muted mono">© {year} Miguel Ángel Guaita Villaseñor. {t('footer.rights')}</p>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: 5rem;
+    padding-block: 2rem 3rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0.75rem;
+  }
+
+  .links li {
+    margin: 0;
+  }
+
+  p {
+    font-size: 0.75rem;
+    margin: 0;
+  }
+</style>
