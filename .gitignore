@@ -1,0 +1,10 @@
+# Herramientas locales
+.claude/
+.agents/
+CLAUDE.md
+skills-lock.json
+
+# Astro
+node_modules/
+dist/
+.astro/
