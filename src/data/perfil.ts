@@ -52,12 +52,17 @@ export const formacion: { titulo: Texto; centro: string; fechas: string }[] = [
   },
 ];
 
-// ⚠️ AWS Academy Cloud Foundations no se ha incluido: pendiente de comprobar en Credly (issue #22).
-export const cursos: { nombre: string; emisor: string; fecha: string }[] = [
+export const cursos: { nombre: string; emisor: string; fecha: string; url?: string }[] = [
   { nombre: 'Claude Code in Action', emisor: 'Anthropic', fecha: '2026' },
   { nombre: 'Introduction to Claude Cowork', emisor: 'Anthropic', fecha: '2026' },
   { nombre: 'Claude Code 101', emisor: 'Anthropic', fecha: '2026' },
   { nombre: 'AWS Academy Graduate – Cloud Developing (training badge)', emisor: 'AWS Training and Certification', fecha: '2024' },
+  {
+    nombre: 'AWS Academy Graduate – Cloud Foundations (training badge)',
+    emisor: 'AWS Training and Certification',
+    fecha: '2023',
+    url: 'https://www.credly.com/badges/49a39862-6a01-4a86-b613-0b0adb43e5bd',
+  },
 ];
 
 export const idiomas: { idioma: Texto; nivel: Texto }[] = [
