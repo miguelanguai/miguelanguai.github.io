@@ -9,8 +9,6 @@ orden: 1
 ---
 
 <!-- TODO: añade la URL pública del visor en "demo" y 2-3 capturas (mapa, detalle de sensor, panel de Grafana) en /public/img/proyectos/. -->
-<!-- TODO: confirma el número de sensores (issue #22). -->
-
 ## El problema
 
 Las estaciones meteorológicas convencionales no captan cómo cambia la temperatura de un barrio a otro. El Área de Meteorología y Climatología de la Fundación CEAM despliega una red de sensores de temperatura y humedad en València, su área metropolitana y Alzira para estudiar la isla de calor urbana. Hacía falta una forma de cargar, validar y enseñar esos datos, tanto a investigadores como al público y a las administraciones.
