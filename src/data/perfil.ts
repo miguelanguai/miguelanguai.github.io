@@ -6,9 +6,10 @@ export const contacto = {
   email: 'miguelanguai@gmail.com',
   linkedin: 'https://www.linkedin.com/in/miguelangelguaita/',
   github: 'https://github.com/miguelanguai',
-  // Rellena con la ruta del PDF en /public/cv/ cuando lo subas (issue #19).
-  // Revisa antes que no lleve el teléfono ni otros datos que no quieras publicar.
-  cv: { es: null, en: null } as Record<Lang, string | null>,
+  cv: {
+    es: '/cv/CV_MiguelAngelGuaita_2026.pdf',
+    en: '/cv/Resume_MiguelAngelGuaita_EN_2026.pdf',
+  } as Record<Lang, string | null>,
 };
 
 export const bio: Record<Lang, string[]> = {
