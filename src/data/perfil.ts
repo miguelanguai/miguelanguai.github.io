@@ -27,7 +27,7 @@ export const bio: Record<Lang, string[]> = {
 
 export const stack: { grupo: Texto; items: string[] }[] = [
   { grupo: { es: 'Backend', en: 'Backend' }, items: ['Python', 'FastAPI', 'Pydantic', 'Django', 'Django REST Framework', 'Java', 'Spring Boot'] },
-  { grupo: { es: 'Frontend', en: 'Frontend' }, items: ['React', 'TypeScript', 'Angular', 'Tailwind CSS', 'OpenLayers'] },
+  { grupo: { es: 'Frontend', en: 'Frontend' }, items: ['React', 'TypeScript', 'Angular', 'Tailwind CSS', 'Leaflet'] },
   { grupo: { es: 'IA', en: 'AI' }, items: ['IA generativa / LLM', 'Google Gemini', 'Document AI', 'Claude Code'] },
   { grupo: { es: 'Datos', en: 'Data' }, items: ['PostgreSQL', 'PostGIS', 'MySQL', 'pandas'] },
   { grupo: { es: 'Calidad y DevOps', en: 'Quality & DevOps' }, items: ['pytest', 'Vitest', 'JUnit', 'GitHub Actions', 'Docker', 'Nginx', 'Linux', 'Git'] },
