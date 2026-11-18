@@ -1,0 +1,75 @@
+---
+import '@fontsource/jetbrains-mono/400.css';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { type Lang, otherLang, useTranslations } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  title?: string;
+  description?: string;
+  /** URL de esta misma página en el otro idioma */
+  alternate: string;
+  image?: string;
+  type?: 'website' | 'article';
+}
+
+const { lang, title, description, alternate, image = '/img/perfil.jpg', type = 'website' } = Astro.props;
+const t = useTranslations(lang);
+
+const siteName = 'Miguel Ángel Guaita';
+const fullTitle = title ? `${title} · ${siteName}` : siteName;
+const desc = description ?? t('site.description');
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const alternateUrl = new URL(alternate, Astro.site);
+const imageUrl = new URL(image, Astro.site);
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={desc} />
+    <meta name="author" content="Miguel Ángel Guaita Villaseñor" />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang={lang} href={canonical} />
+    <link rel="alternate" hreflang={otherLang(lang)} href={alternateUrl} />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#fbfaf9" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#141211" media="(prefers-color-scheme: dark)" />
+
+    <!-- Open Graph / redes sociales (issue #12) -->
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:locale" content={lang === 'es' ? 'es_ES' : 'en_GB'} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={desc} />
+    <meta name="twitter:image" content={imageUrl} />
+
+    <!-- Aplica el tema antes de pintar para evitar parpadeos -->
+    <script is:inline>
+      (function () {
+        var t = null;
+        try { t = localStorage.getItem('theme'); } catch (e) {}
+        if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', t);
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{t('nav.skip')}</a>
+    <Header lang={lang} alternate={alternate} />
+    <main id="main" class="container">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>
