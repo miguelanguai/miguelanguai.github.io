@@ -3,7 +3,7 @@ title: VITUclim
 resumen: Public viewer for Valencia's urban heat sensor network, designed and built on my own at the CEAM Foundation.
 fecha: 2024 – 2026
 rol: Sole developer (design, backend, frontend and deployment)
-stack: [Python, Django REST Framework, PostgreSQL, PostGIS, Angular, OpenLayers, pandas, Docker, Nginx, Grafana, Loki, Prometheus]
+stack: [Python, Django REST Framework, PostgreSQL, PostGIS, Angular, Leaflet, pandas, Docker, Nginx, Grafana, Loki, Prometheus]
 destacado: true
 orden: 1
 demo: https://vituclim.org/home
@@ -23,7 +23,7 @@ Conventional weather stations can't capture how temperature changes from one nei
 I designed and built VITUclim end to end:
 
 - **Backend** with Django REST Framework and PostGIS to store and query each sensor's time series and location.
-- **Frontend** in Angular with OpenLayers maps: every sensor on the map, with its data and history.
+- **Frontend** in Angular with Leaflet maps: every sensor on the map, with its data and history.
 - **Data**: loading and transforming historical data with pandas, plus a Python app for technicians to validate measurements before publishing them.
 - **Infrastructure**: deployed with Docker and Nginx, with observability through Grafana, Loki and Prometheus, and load testing.
 
@@ -37,5 +37,5 @@ I was the project's only developer: I chose the architecture, built the backend,
 
 ## Outcome
 
-- Over 80 temperature and humidity sensors across Valencia and Alzira, one of the most detailed urban heat observation networks in Spain.
+- 130 active temperature and humidity sensors across Valencia and Alzira, one of the most detailed urban heat observation networks in Spain.
 - An observability template for Django, extracted from this project and published as open source: [django-loki-grafana-logging](https://github.com/miguelanguai/django-loki-grafana-logging).

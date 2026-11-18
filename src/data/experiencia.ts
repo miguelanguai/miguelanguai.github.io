@@ -58,18 +58,18 @@ export const experiencia: Puesto[] = [
     logros: {
       es: [
         'Diseño y desarrollo en solitario de VITUclim, el visor público de la red de calor urbano de València.',
-        'Backend con Django REST Framework y PostGIS; frontend en Angular con mapas de OpenLayers.',
+        'Backend con Django REST Framework y PostGIS; frontend en Angular con mapas de Leaflet.',
         'Carga y transformación de datos históricos con pandas, y una app en Python para que los técnicos validen los datos.',
         'Despliegue en Docker y Nginx, con observabilidad (Grafana, Loki, Prometheus) y pruebas de carga.',
       ],
       en: [
         'Designed and built VITUclim on my own: the public viewer for Valencia’s urban heat sensor network.',
-        'Django REST Framework and PostGIS backend; Angular frontend with OpenLayers maps.',
+        'Django REST Framework and PostGIS backend; Angular frontend with Leaflet maps.',
         'Historical data loading and transformation with pandas, plus a Python app for technicians to validate the data.',
         'Deployed with Docker and Nginx, with observability (Grafana, Loki, Prometheus) and load testing.',
       ],
     },
-    stack: ['Python', 'Django REST', 'PostGIS', 'Angular', 'OpenLayers', 'pandas', 'Docker', 'Nginx', 'Grafana', 'Prometheus'],
+    stack: ['Python', 'Django REST', 'PostGIS', 'Angular', 'Leaflet', 'pandas', 'Docker', 'Nginx', 'Grafana', 'Prometheus'],
     caso: 'vituclim',
   },
   {

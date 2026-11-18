@@ -70,7 +70,7 @@ La web actual (`index.html`) se quedó en el perfil de 2024: «Programador Junio
 | Árbitro desde | — | 2018 | LinkedIn: 2017. Datos maestros: sept. 2018 | **2017** |
 | Categoría de árbitro | — | Lliga Comunitat | 2ª FFCV | **Lliga Comunitat** |
 | NASA Space Apps | Ganador | Solo «Best Use of Data» | Ganador general **y** mejor uso de datos | **Ganador general y mejor uso de datos** |
-| Sensores de VITUclim | — | más de 100 | Publicación del CEAM: más de 70 en València + 17 en Alzira (≈87) | **Más de 80** |
+| Sensores de VITUclim | — | más de 100 | Publicación del CEAM: más de 70 en València + 17 en Alzira (≈87) | **130** (los que muestra vituclim.org como activos; actualizado el 18/11/2026) |
 | Valenciano | — | C1 (JQCV) | C1 (EOI) | **C1 (JQCV)** |
 | AWS Cloud Foundations | — | Sí | No está en LinkedIn | **Sí**: badge en Credly, abril de 2023 |
 | Copyright del pie | © 2023 | — | — | Año actual automático |
