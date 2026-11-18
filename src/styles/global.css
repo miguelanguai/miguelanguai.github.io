@@ -183,7 +183,7 @@ hr {
   top: -100%;
   padding: 0.5rem 1rem;
   background: var(--accent);
-  color: #fff;
+  color: var(--bg);
   border-radius: var(--radius);
   z-index: 10;
 }
