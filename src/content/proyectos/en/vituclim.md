@@ -9,8 +9,6 @@ orden: 1
 ---
 
 <!-- TODO: add the viewer's public URL as "demo" and 2-3 screenshots (map, sensor detail, Grafana dashboard) in /public/img/proyectos/. -->
-<!-- TODO: confirm the sensor count (issue #22). -->
-
 ## The problem
 
 Conventional weather stations can't capture how temperature changes from one neighbourhood to the next. The Meteorology and Climatology Area at the CEAM Foundation runs a network of temperature and humidity sensors across Valencia, its metropolitan area and Alzira to study the urban heat island. It needed a way to load, validate and show that data to researchers, the public and local authorities.

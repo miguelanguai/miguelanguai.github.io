@@ -60,20 +60,21 @@ La web actual (`index.html`) se quedó en el perfil de 2024: «Programador Junio
 
 ---
 
-## 3. Incoherencias entre fuentes (decide una versión y úsala en todas partes)
+## 3. Incoherencias entre fuentes (decididas el 18/11/2026, issue #22)
 
-| Dato | Web actual | CV 2026 | LinkedIn / datos maestros |
-|---|---|---|---|
-| Titular | Programador Junior. Spring Boot + Angular | Full Stack Developer · Python · FastAPI · React · IA aplicada | Full Stack Developer \| Python · FastAPI · Django · React \| Applied AI. Bajo el nombre aún pone «Programador Web» |
-| Disponibilidad | «Disponible para trabajar», «búsqueda activa» | — | Contrato indefinido en Kaizen |
-| Capgemini | mar. – may. 2024 | mar. – jun. 2024 | mar. – jun. 2024 (⚠️ por confirmar) |
-| Árbitro desde | — | 2018 | LinkedIn: 2017. Datos maestros: sept. 2018 |
-| Categoría de árbitro | — | Lliga Comunitat | 2ª FFCV |
-| NASA Space Apps | Ganador | Solo «Best Use of Data» | Ganador general **y** mejor uso de datos → el CV se queda corto |
-| Sensores de VITUclim | — | más de 100 | Publicación del CEAM: más de 70 en València + 17 en Alzira (≈87) |
-| Valenciano | — | C1 (JQCV) | C1 (EOI) |
-| Copyright del pie | © 2023 | — | — |
-| Picoop | Experiencia laboral (mar. – jun. 2024) | No aparece | Proyecto del DAW → va en Proyectos, no en Experiencia |
+| Dato | Web antigua | CV 2026 | LinkedIn / datos maestros | ✅ Decisión |
+|---|---|---|---|---|
+| Titular | Programador Junior. Spring Boot + Angular | Full Stack Developer · Python · FastAPI · React · IA aplicada | Full Stack Developer \| Python · FastAPI · Django · React \| Applied AI. Bajo el nombre aún pone «Programador Web» | Full stack · Python · FastAPI · React · IA aplicada |
+| Disponibilidad | «Disponible para trabajar», «búsqueda activa» | — | Contrato indefinido en Kaizen | No mencionarla |
+| Capgemini | mar. – may. 2024 | mar. – jun. 2024 | mar. – jun. 2024 | **mar. – jun. 2024** |
+| Árbitro desde | — | 2018 | LinkedIn: 2017. Datos maestros: sept. 2018 | **2017** |
+| Categoría de árbitro | — | Lliga Comunitat | 2ª FFCV | **Lliga Comunitat** |
+| NASA Space Apps | Ganador | Solo «Best Use of Data» | Ganador general **y** mejor uso de datos | **Ganador general y mejor uso de datos** |
+| Sensores de VITUclim | — | más de 100 | Publicación del CEAM: más de 70 en València + 17 en Alzira (≈87) | **Más de 80** |
+| Valenciano | — | C1 (JQCV) | C1 (EOI) | **C1 (JQCV)** |
+| AWS Cloud Foundations | — | Sí | No está en LinkedIn | **Sí**: badge en Credly, abril de 2023 |
+| Copyright del pie | © 2023 | — | — | Año actual automático |
+| Picoop | Experiencia laboral (mar. – jun. 2024) | No aparece | Proyecto del DAW | Fuera de Experiencia |
 
 ---
 
