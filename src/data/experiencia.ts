@@ -19,7 +19,6 @@ export interface Puesto {
 }
 
 // Más reciente primero.
-// ⚠️ Fechas de Capgemini pendientes de confirmar (issue #22).
 export const experiencia: Puesto[] = [
   {
     empresa: 'Kaizen Consulting Europa',

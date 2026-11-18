@@ -67,19 +67,18 @@ export const cursos: { nombre: string; emisor: string; fecha: string; url?: stri
 
 export const idiomas: { idioma: Texto; nivel: Texto }[] = [
   { idioma: { es: 'Español', en: 'Spanish' }, nivel: { es: 'Nativo', en: 'Native' } },
-  { idioma: { es: 'Valenciano', en: 'Valencian' }, nivel: { es: 'C1', en: 'C1' } },
+  { idioma: { es: 'Valenciano', en: 'Valencian' }, nivel: { es: 'C1 (JQCV)', en: 'C1 (JQCV)' } },
   { idioma: { es: 'Inglés', en: 'English' }, nivel: { es: 'B2 (EOI)', en: 'B2 (EOI)' } },
   { idioma: { es: 'Francés', en: 'French' }, nivel: { es: 'A2 (EOI)', en: 'A2 (EOI)' } },
 ];
 
-// ⚠️ Año de inicio como árbitro pendiente de unificar (issue #22).
 export const fueraDelCodigo: Record<Lang, string[]> = {
   es: [
-    'Árbitro de fútbol en la Federació de Futbol de la Comunitat Valenciana desde 2018. Me ha enseñado a decidir rápido y con calma bajo presión.',
+    'Árbitro de fútbol en la Federació de Futbol de la Comunitat Valenciana desde 2017, actualmente en Lliga Comunitat. Me ha enseñado a decidir rápido y con calma bajo presión.',
     'Work & Travel en Hersheypark (Pensilvania, EE. UU.) en el verano de 2023: trabajo en un entorno internacional en inglés.',
   ],
   en: [
-    'Football referee in the Valencian Football Federation since 2018. It has taught me to make fast, calm decisions under pressure.',
+    'Football referee in the Valencian Football Federation since 2017, currently in the Lliga Comunitat. It has taught me to make fast, calm decisions under pressure.',
     'Work & Travel at Hersheypark (Pennsylvania, USA) in summer 2023: working in an international, English-speaking team.',
   ],
 };
