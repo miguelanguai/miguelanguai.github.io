@@ -22,7 +22,6 @@ export interface Puesto {
 export const experiencia: Puesto[] = [
   {
     empresa: 'Kaizen Consulting Europa',
-    logo: '/img/logos/kaizenLogo.svg',
     puesto: {
       es: 'Desarrollador full stack y responsable de IT',
       en: 'Full stack developer and IT lead',
@@ -33,20 +32,20 @@ export const experiencia: Puesto[] = [
     logros: {
       es: [
         'Desarrollo full stack de una plataforma web modular con IA generativa.',
-        'Integración de Google Gemini y Document AI, con validación de datos mediante Pydantic.',
+        'Integración de IA generativa con validación de datos mediante Pydantic.',
         'APIs con FastAPI y Pydantic sobre PostgreSQL; frontend en React + TypeScript.',
-        'Más de 600 pull requests en 9 meses, con tests (pytest, Vitest), CI con GitHub Actions y despliegue en Docker.',
+        'Más de 600 pull requests en 9 meses, con tests (pytest, Vitest) y CI con GitHub Actions.',
         'Desarrollo asistido por IA con Claude Code, incluidas skills propias para revisar el código.',
       ],
       en: [
         'Full stack development of a modular web platform using generative AI.',
-        'Integration of Google Gemini and Document AI, with data validation using Pydantic.',
+        'Generative AI integration with data validation using Pydantic.',
         'APIs with FastAPI and Pydantic on PostgreSQL; React + TypeScript frontend.',
-        'Over 600 pull requests in 9 months, with tests (pytest, Vitest), CI on GitHub Actions and Docker deployments.',
+        'Over 600 pull requests in 9 months, with tests (pytest, Vitest) and CI on GitHub Actions.',
         'AI-assisted development with Claude Code, including custom skills for code review.',
       ],
     },
-    stack: ['Python', 'FastAPI', 'Pydantic', 'PostgreSQL', 'React', 'TypeScript', 'Gemini', 'Document AI', 'pytest', 'Vitest', 'Docker', 'GitHub Actions'],
+    stack: ['Python', 'FastAPI', 'Pydantic', 'PostgreSQL', 'Alembic', 'React', 'TypeScript', 'Tailwind CSS', 'pytest', 'Vitest', 'GitHub Actions'],
   },
   {
     empresa: 'Fundación CEAM',
